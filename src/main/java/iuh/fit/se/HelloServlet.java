@@ -2,6 +2,7 @@ package iuh.fit.se;
 
 import java.io.*;
 
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
@@ -21,6 +22,15 @@ public class HelloServlet extends HttpServlet {
         out.println("<html><body>");
         out.println("<h1>" + message + "</h1>");
         out.println("</body></html>");
+        out.close();
+    }
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.doPost(req, resp);
+        resp.setContentType("text/plain");
+        PrintWriter out = resp.getWriter();
+        out.println("This is a POST request response from the Hello servlet!");
+        out.close();
     }
 
     public void destroy() {
